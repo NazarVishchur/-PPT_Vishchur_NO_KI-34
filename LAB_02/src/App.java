@@ -13,6 +13,7 @@ public class App {
      */
     public static void main(String[] args) throws FileNotFoundException {
         int nRows;
+        int count;
 
         String filler;
         Scanner in = new Scanner(System.in);
@@ -23,8 +24,12 @@ public class App {
         System.out.print("Enter the size of the square matrix: ");
         nRows = in.nextInt();
         in.nextLine();
-        char[][] arr = new char[nRows][nRows];
-
+        char arr[][] = new char[nRows][];
+        for(int i = 0; i < nRows; ++i){
+           arr[i] = new char[nRows - i];}
+        
+        
+        
         System.out.print("\nEnter the placeholder: ");
         filler = in.nextLine();
 
@@ -33,28 +38,27 @@ public class App {
             System.out.println("The placeholder character was entered incorrectly");
             System.exit(1);
         }
-
-        for (int i = 1; i <= nRows; i++) {
-            int rowIndex = i - 1;
-            for (int j = 1; j <= nRows; j++) {
-                int columnJndex = j - 1;
-                if(j < i){
-                    arr[rowIndex][columnJndex] = (char) " ".codePointAt(0);
-                }else{
-                    arr[rowIndex][columnJndex] = (char) filler.codePointAt(0);
-                }
-            }
-        }
-
-        for (int i = 0; i < nRows; i++) {
-            for (int j = 0; j < nRows; j++) {
-                System.out.print(arr[i][j] + " ");
-                fout.print(arr[i][j] + " ");
-            }
-            fout.print("\n");
-            System.out.print("\n");
-        }
-        fout.flush();
-        fout.close();
+         for (int i = 0; i < nRows; i++)
+         {
+        	 
+        	 for (int j = 0; j < arr[i].length; j++)
+             {
+            	 arr[i][j]= (char) filler.codePointAt(0);
+            	 boolean run = true;
+                 count =i;
+                 if(j == 0 && i != 0){
+                     while(run){
+                         System.out.print("  ");
+                         count--;
+                         if(count == 0){
+                             run = false;
+                         }
+                     }
+                 }
+            	 System.out.print(arr[i][j]+" ");
+            	 
+         }
+         System.out.println();
     }
-}
+    }
+    }
